@@ -19,6 +19,8 @@ public class DayNightCycle : MonoBehaviour
 
     [SerializeField] private Color dayAmbient = new Color(0.65f, 0.70f, 0.78f);
     [SerializeField] private Color nightAmbient = new Color(0.07f, 0.09f, 0.15f);
+
+    [SerializeField] private Light streetLight;
     private void Awake()
     {
         sun = GetComponent<Light>();
@@ -65,6 +67,14 @@ public class DayNightCycle : MonoBehaviour
         {
             float exposure = Mathf.Lerp(daytimeExposure * 0.08f, daytimeExposure, daylight);
             runtimeSkybox.SetFloat("_Exposure", exposure);
+        }
+
+        if (streetLight != null)
+        {
+            bool shouldBeOn = currentHour >= 18f || currentHour < 6f;
+
+            if (streetLight.enabled != shouldBeOn)
+                streetLight.enabled = shouldBeOn;
         }
     }
 
