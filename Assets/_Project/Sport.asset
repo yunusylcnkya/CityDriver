@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315432fc9f7b57b4596d42a76139084a, type: 3}
+  m_Name: Sport
+  m_EditorClassIdentifier: Assembly-CSharp::ArcadeDrift.CarSettings
+  displayName: Sport
+  price: 0
+  icon: {fileID: 0}
+  engineLoop: {fileID: 0}
+  view: {fileID: 11400000, guid: b936d151e4cc4c7419a8148f11d01ecd, type: 2}
+  mass: 1150
+  centerOfMassOffset: {x: 0, y: -0.2, z: 0}
+  motorTorque: 310
+  gearRatios:
+  - 3.2
+  - 2.1
+  - 1.55
+  - 1.2
+  - 0.95
+  finalDrive: 3.7
+  wheelRadius: 0.33
+  redline: 6800
+  torqueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.6
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.55
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.65
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  brakeAcceleration: 11
+  grip: 9
+  driftMin: 1.2
+  driftMax: 4
+  enterAngle: 15
+  exitAngle: 7
+  yawSpeed: 95
+  yawAcceleration: 350
+  fastSteerFraction: 0.52
+  recoveryGain: 2
