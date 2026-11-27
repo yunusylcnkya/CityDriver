@@ -20,7 +20,11 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private Color dayAmbient = new Color(0.65f, 0.70f, 0.78f);
     [SerializeField] private Color nightAmbient = new Color(0.07f, 0.09f, 0.15f);
 
-    [SerializeField] private Light streetLight;
+    [SerializeField] private Transform streetLightsRoot;
+
+    private Light[] streetLights;
+    private bool? streetLightsOn;
+
     private void Awake()
     {
         sun = GetComponent<Light>();
@@ -37,6 +41,7 @@ public class DayNightCycle : MonoBehaviour
             daytimeExposure = runtimeSkybox.GetFloat("_Exposure");
             RenderSettings.skybox = runtimeSkybox;
         }
+        streetLights = streetLightsRoot != null ? streetLightsRoot.GetComponentsInChildren<Light>(true) : System.Array.Empty<Light>();
         UpdateSun();
     }
 
@@ -68,16 +73,21 @@ public class DayNightCycle : MonoBehaviour
             float exposure = Mathf.Lerp(daytimeExposure * 0.08f, daytimeExposure, daylight);
             runtimeSkybox.SetFloat("_Exposure", exposure);
         }
+        SetStreetLights(currentHour >= 18f || currentHour < 6f);
+    }
+    private void SetStreetLights(bool turnOn)
+    {
+        if (streetLightsOn == turnOn)
+            return;
 
-        if (streetLight != null)
+        streetLightsOn = turnOn;
+
+        foreach (Light lamp in streetLights)
         {
-            bool shouldBeOn = currentHour >= 18f || currentHour < 6f;
-
-            if (streetLight.enabled != shouldBeOn)
-                streetLight.enabled = shouldBeOn;
+            if (lamp != null)
+                lamp.enabled = turnOn;
         }
     }
-
     private void OnDestroy()
     {
         if (runtimeSkybox != null)
